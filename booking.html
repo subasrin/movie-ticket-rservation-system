@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theater Booking</title>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW92aWUlMjB0aWNrZXRzfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Arial', sans-serif;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e74c3c;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .seat-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .seat {
+            width: 30px;
+            height: 30px;
+            background-color: #e74c3c;
+            border: 2px solid #c0392b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .seat.booked {
+            background-color: #34495e;
+            border-color: #2c3e50;
+            cursor: not-allowed;
+        }
+
+        #submitBtn {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease-in-out;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #submitBtn:hover {
+            background-color: #c0392b;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: transparent;
+            color: darkred;
+            display: block;
+            margin: 10px auto;
+        }
+        input::placeholder {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Theater Seat Booking</h1>
+
+    <div class="row">
+        <div class="seat-container" id="leftSeats"></div>
+        <div class="seat-container" id="rightSeats"></div>
+    </div>
+   
+    <input type="date" id="bookingDate" required>
+    <input type="text" id="bookingTime" placeholder="Select Booking Time" list="timeOptions" required>
+    <input name="id" type="number" placeholder="ID" required><br>
+    <datalist id="timeOptions">
+        <option value="12pm">
+        <option value="4pm">
+        <option value="9pm">
+        <option value="12am">
+    </datalist>
+
+    <a href="thank.html"><button id="submitBtn" onclick="submitBooking()">Payment</button></a>
+
+    <script>
+        var booked = [];
+
+        function createSeats(containerId, start, end) {
+            var seatContainer = document.getElementById(containerId);
+
+            for (var i = start; i <= end; i++) {
+                var seat = document.createElement("div");
+                seat.classList.add("seat");
+                seat.innerText = i;
+                seat.onclick = function() {
+                    toggleBooking(this);
+                };
+
+                seatContainer.appendChild(seat);
+            }
+        }
+
+        function toggleBooking(seat) {
+            if (seat.classList.contains("booked")) {
+                seat.classList.remove("booked");
+                removeFromBooked(seat.innerText);
+            } else {
+                seat.classList.add("booked");
+                addToBooked(seat.innerText);
+            }
+        }
+
+        function addToBooked(seatNumber) {
+            booked.push(seatNumber);
+            console.log(booked);
+        }
+
+        function removeFromBooked(seatNumber) {
+            var index = booked.indexOf(seatNumber);
+            if (index !== -1) {
+                booked.splice(index, 1);
+            }
+        }
+
+        function submitBooking() {
+            var userData = document.getElementById("userData").value;
+            var bookingDate = document.getElementById("bookingDate").value;
+            var bookingTime = document.getElementById("bookingTime").value;
+            
+            alert("User Data: " + userData + "\nBooking Date: " + bookingDate + "\nBooked Seats: " + booked.join(", ") + "\nBooking Time: " + bookingTime);
+        }
+
+        createSeats("leftSeats", 1, 50);
+        createSeats("rightSeats", 51, 100);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>NO MONEY NO HONEY MOVIE RESERVATION</title>
+
+  <style>
+
+    body {
+      background-image: url('https://i.redd.it/vikram-2022-movie-poster-i-made-inspired-by-vintage-posters-v0-kvv2644lcx3a1.png?width=3840&format=png&auto=webp&s=de8c32afcb18ae00eb9aade66f680f5c3209c035');
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #reservation-box {
+      border: 2px solid #333;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Reduced box shadow */
+      padding: 15px; /* Reduced padding */
+      text-align: center;
+      background-color: darkbrown;
+      color: white;
+      max-width: 350px; /* Set a maximum width */
+    }
+
+    h1 {
+      color: white; /* Changing title color to dark red */
+      font-size: 30px; /* Decreased font size for the title */
+      margin-bottom: 20px;
+      
+    }
+
+    input {
+      background-color: transparent;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: black; /* Changing button color to dark red */
+      color: white;
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8b0000; /* A slightly darker shade when hovered */
+    }
+
+    #logo {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id="reservation-box">
+
+    <h1>NO MONEY NO HONEY MOVIE TICKET RESERVATION</h1>
+
+    <form method="post" action="demoservlet">
+
+      <input name="name" placeholder="Name" required><br>
+
+      <input name="phone" type="number" placeholder="Phone" required><br>
+
+      <input name="email" type="email" placeholder="Email" required><br>
+
+      <input name="password" type="password" placeholder="Password" required><br>
+      
+      <input name="id" type="number" placeholder="ID" required><br>
+
+      <a href="welcome.html"><button type="submit">Login</button><br>
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>
+
+
+
+

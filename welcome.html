@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkred;
+            margin-top: 20px;
+        }
+
+        select, input {
+            background-color: transparent;
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin: 10px;
+            border: 1px solid darkred;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: darkred;
+        }
+
+        input::placeholder {
+            color: darkred;
+        }
+
+        #movieImagesContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        img {
+            width: 5cm;
+            height: 10cm;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        img.selected {
+            border: 2px solid darkred;
+        }
+
+        #formContainer {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #seats,
+        #theatre {
+            display: inline-block;
+            width: calc(50% - 5px);
+        }
+
+        #registerBtn {
+            display: block;
+            margin: 0 auto;
+            background-color: darkred;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #registerBtn:hover {
+            background-color: #700000;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="formContainer">
+        <form action="demoservlet2" method="post">
+            <select id="movieSelect" name="movie" onchange="displayImage()" placeholder="MOVIE">
+                <option value="Captain miller">Captain miller</option>
+                <option value="Kanguva">Kanguva</option>
+                <option value="Leo">Leo</option>
+                <option value="Dhruva natchathiram">Dhruva natchathiram</option>
+                <option value="VTV">VTV</option>
+                <!-- Add more movie options as needed -->
+            </select>
+
+            <div id="movieImagesContainer">
+                <img src="https://static.moviecrow.com/gallery/20230630/217090-Fz3hIAtaYAEHYWo.jpg" alt="Captain miller" onclick="selectMovie('Captain miller')">
+                <img src="https://pbs.twimg.com/media/F1-Gc0EXgAUp_Ag.jpg" alt="Kanguva" onclick="selectMovie('Kanguva')">
+                <img src="https://static.moviecrow.com/gallery/20230921/221109-Leo%20Vijay%20Sanjay%20Dutt%20Poster.jpg" alt="Leo" onclick="selectMovie('Leo')">
+                <img src="https://i.pinimg.com/1200x/89/d3/88/89d388e8b4adc48a5c9eba8bd780d722.jpg" alt="Dhruva natchathiram" onclick="selectMovie('Dhruva natchathiram')">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fdbd7118937969.562d1e3591ad3.jpg" alt="VTV" onclick="selectMovie('VTV')">
+                <!-- Add more images and onclick events for additional movies -->
+            </div>
+
+            <input type="text" id="seats" name="seats" placeholder="Enter the number of seats" required>
+            <input type="text" id="theatre" name="theatre" placeholder="Enter the theatre name" required>
+            <input type="text" id="id" name="id" placeholder="Enter the id" required>
+            <a href="booking.html"><input type="submit" id="registerBtn" value="Register Theater">
+        </form>
+    </div>
+
+    <script>
+        function displayImage() {
+            var select = document.getElementById("movieSelect");
+            var selectedMovie = select.options[select.selectedIndex].value;
+            selectMovie(selectedMovie);
+        }
+
+        function selectMovie(selectedMovie) {
+            var select = document.getElementById("movieSelect");
+            var images = document.querySelectorAll("#movieImagesContainer img");
+
+            // Set the selected option based on the provided movie
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === selectedMovie) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+
+            // Highlight the selected image
+            images.forEach(function(img) {
+                img.classList.remove("selected");
+                if (img.alt === selectedMovie) {
+                    img.classList.add("selected");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
